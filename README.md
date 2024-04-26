@@ -66,11 +66,13 @@ kafka-topics.sh --create --topic netology --bootstrap-server 172.18.0.9:9092
 ## Настройка Producer на Python
 1. В первом окне терминала скопируйте файл с кодом Producer внутрь контейнера python-producer
 ```
-docker cp python-producer.py <python-producer-container-id>:/python-producer.py
+docker cp netology/producer.py <python-producer-container-id>:/producer.py
 ```
-2. Внутри контейнера python-producer уже установлена библиотека kafka-python, поэтому достаточно запустить наш producer изнутри контейнера:
+2. Внутри контейнера python-producer уже установлена библиотека kafka-python, поэтому достаточно войти в контейнер и запустит producer.py изнутри контейнера:
 ```
-docker exec -it 9def172c18bb python python-producer.py
+docker exec -it <python-producer-container-id> /bin/bash
+
+python producer.py 
 ```
 3. В окне терминала, где вы зашли в контейнер Kafka, проверьте, что сообщения отправляются в топик:
 ```
@@ -78,13 +80,13 @@ kafka-console-consumer.sh --topic netology --from-beginning --bootstrap-server 1
 ```
 
 ## Запуск Streaming джобы
-1. В первом окне терминала скопируйте файл с Streaming кодом внутрь контейнера spark
+1. Создайте еще одно окно терминала и скопируйте файл с Streaming кодом внутрь контейнера spark
 ```
-docker cp streaming.py <spark-container-id>:/streaming.py
+docker cp netology/sturctured-streaming.py <spark-container-id>:/structured-streaming.py
 ```
 2. Запустите spark-submit из контейнера spark: 
 ```
-docker exec -it spark spark-submit --packages "org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0" --master "spark://172.18.0.10:7077" /streaming.py
+docker exec -it spark spark-submit --packages "org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0" --master "spark://172.18.0.10:7077" /structured-streaming.py
 ```
 Обратите внимание, что в обновленном файле со streaming кодом уже настроен уровень логгирования ERROR, поэтому в выводе вы должны видеть результаты streaming обработки. 
 
@@ -92,7 +94,7 @@ docker exec -it spark spark-submit --packages "org.apache.spark:spark-sql-kafka-
 # Задание 
 В рамках домашнего задания Вам необходимо повторить действия в разделе **Подготовка инфраструктуры**.
 
-- В качестве генератора сообщений можете использовать код в python-producer.py 
-- Ваша задача - запустить код на Structure Streaming в structured-streaming.py на основе сгенерированных данных и отобразить в консоле результат join (Static + Stream).
+- В качестве генератора сообщений можете использовать код в netology/producer.py 
+- Ваша задача - запустить код на Structure Streaming в netology/structured-streaming.py на основе сгенерированных данных и отобразить в консоле результат join (Static + Stream).
 - В качестве артефакта - прикрепите скрин консоли, в которой виден timestamp сообщения и успешный результат join.
 - Дополнительное задание: найти в коде приложения пример работы функции агрегата, адаптировать его под входной поток и прислать скрин консоли (в нем должны быть показаны количества событий каждого из пользователя).**

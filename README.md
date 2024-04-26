@@ -14,6 +14,7 @@
 1. Клонируем данный репозиторий к себе на локальную машину
 ```
     git clone https://github.com/glincow/kafka-spark-streaming-docker.git
+      cd kafka-spark-streaming-docker
 ```
 
 2. Запускаем контейнеры

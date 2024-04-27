@@ -14,7 +14,7 @@ def push():
         text = ''.join(choices(string.ascii_uppercase +
                                string.digits, k=20))
         user = {'id': randrange(5), 'action': text}
-        producer.send('netology', value=user)
+        producer.send('netology-spark', value=user)
         sleep(randrange(3))
         print("produced message ", e)
 

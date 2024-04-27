@@ -21,21 +21,17 @@ cd kafka-spark-streaming-docker
 ```
 docker-compose up -d 
 ```
-Если все нормально, должны запуститься следующие контейнеры
+Если все нормально, должны запуститься следующие контейнеры (контейнеров будет больше, но  нам нужно эти):
 
-| service name             | address[:port]   |
-|--------------------------|------------------|
-| zookeeper                | 172.18.0.8:2181  |
-| kafka                    | 172.18.0.9:9092  |
-| spark master             | 172.18.0.10:7077 |
-| spark UI                 | 172.18.0.10:8080 |
-| spark worker 1           | 172.18.0.11      |
-| spark worker 2           | 172.18.0.12      |
-| spark-streaming-kafka    | 172.18.0.13      |
-| nodejs-producer          | 172.18.0.14      |
-| nodejs-consumer          | 172.18.0.15      |
-| python-producer          | 172.18.0.16      |
-| python-consumer          | 172.18.0.17      |
+| service name             | 
+|--------------------------|
+| zookeeper                | 
+| kafka                    | 
+| spark                    | 
+| spark worker 1           | 
+| spark worker 2           | 
+| spark-streaming-scala    | 
+| python-producer          | 
 
 Проверьте, какие контейнеры запустились. В выводе этой командывы можете найти container id, которые пригодятся в следующих шагах:
 ```

@@ -82,7 +82,7 @@ kafka-console-consumer.sh --topic netology --from-beginning --bootstrap-server 1
 ## Запуск Streaming джобы
 1. Создайте еще одно окно терминала и скопируйте файл с Streaming кодом внутрь контейнера spark
 ```
-docker cp netology/sturctured-streaming.py <spark-container-id>:/structured-streaming.py
+docker cp netology/structured-streaming.py <spark-container-id>:/structured-streaming.py
 ```
 2. Запустите spark-submit из контейнера spark: 
 ```

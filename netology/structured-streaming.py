@@ -16,7 +16,7 @@ input_stream = spark \
   .readStream \
   .format("kafka") \
   .option("kafka.bootstrap.servers", "172.18.0.9:9092") \
-  .option("subscribe", "test") \
+  .option("subscribe", "spark-netology") \
   .option("failOnDataLoss", False) \
   .load()
 
